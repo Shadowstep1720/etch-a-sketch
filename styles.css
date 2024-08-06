@@ -1,19 +1,28 @@
 #canvas {
-    width: 960px;
-    height: 960px;
+    /*width: 960px;*/
+    /*height: 960px;*/
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    border: 2px solid black ;
 
     .rowContainer {
         display: flex;
         align-items: stretch;
         flex-grow: 1;
 
-        .pixel {
-            background-color: black;
-            border: 2px solid white;
+        .blankPixel,
+        .coloredPixel{
             flex-grow: 1;
+            border: 1px solid black;
+        }
+        
+        .blankPixel {
+            background-color: white;
+        }
+
+        .coloredPixel {
+            background-color: black;
         }
     }
 }
