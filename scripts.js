@@ -18,7 +18,7 @@ function createCanvas(gridSize) {
     
         for (let y = 0; y < gridSize; y++) {
             const pixel = document.createElement("div");
-            pixel.setAttribute("class", "blankPixel");
+            pixel.setAttribute("class", "pixel");
             rowContainer.appendChild(pixel);
 
             pixel.addEventListener("mouseover", colorPixel)
@@ -26,8 +26,16 @@ function createCanvas(gridSize) {
     }
 }
 
+
 function colorPixel(event) {
-    event.currentTarget.setAttribute("class", "coloredPixel");
+    const target = event.currentTarget;
+    let targetOpacity = parseFloat(getComputedStyle(target).opacity);
+    console.log(targetOpacity);
+    if (targetOpacity < 1) {
+        target.style.opacity = targetOpacity + .1;
+        console.log(targetOpacity + .1);
+        console.log("if statement called");
+    } 
 }
 
 function resetCanvas(gridSize) {
@@ -35,6 +43,8 @@ function resetCanvas(gridSize) {
     createCanvas(gridSize);
 }
 
+
+//reset canvas
 const resetBtn = document.querySelector("#reset");
 resetBtn.addEventListener("click", () => {
     let gridSize = parseInt(prompt("How many pixels would you like in the canvas? Please enter a number from 1-100."));
