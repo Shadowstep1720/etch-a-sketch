@@ -1,3 +1,5 @@
+// TO DO: create input interface to let user set grid and canvas height
+
 const canvas = document.querySelector("#canvas");
 let gridWidth = 140;
 let gridHeight = 80;
