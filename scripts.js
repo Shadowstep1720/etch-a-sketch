@@ -1,5 +1,4 @@
-// TO DO: create input interface to let user set grid and canvas height
-
+// sets canvas size
 const canvas = document.querySelector("#canvas");
 let canvasWidth = 960;
 let canvasHeight = 960;
@@ -7,7 +6,8 @@ let canvasHeight = 960;
 canvas.style.width = `${canvasWidth}px`;
 canvas.style.height = `${canvasHeight}px`;
 
-let colorArray = ["black", "blue", "green", "red", "yellow", "white"]
+// fuves color options
+let colorArray = ["#000000", "#0000FF", "green", "red", "yellow", "white"]
 let currentColor = "black";
 
 //generate canvas
@@ -77,3 +77,7 @@ for (color of colorArray) {
 
     colorButton.addEventListener("click", changeColor);
 }
+
+window.addEventListener("load", () => {
+    resetCanvas(100);
+}) 
