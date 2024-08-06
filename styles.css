@@ -14,12 +14,11 @@
         .pixel {
             flex-grow: 1;
             opacity: 0;
-            background-color: black;
         }
     }
 }
 
-/* #colorContainer {
+#colorContainer {
     display: flex;
 
     .color {
@@ -49,4 +48,5 @@
         background-color: red;
     }
 
-} */
+}
+

@@ -1,21 +1,23 @@
 // TO DO: create input interface to let user set grid and canvas height
 
 const canvas = document.querySelector("#canvas");
-let gridWidth = 100;
-let gridHeight = 100;
 let canvasWidth = 960;
 let canvasHeight = 960;
 
 canvas.style.width = `${canvasWidth}px`;
 canvas.style.height = `${canvasHeight}px`;
 
+let colorArray = ["black", "blue", "green", "red", "yellow", "white"]
+let currentColor = "black";
+
+//generate canvas
 function createCanvas(gridSize) {
-    
+
     for (let i = 0; i < gridSize; i++) {
         const rowContainer = document.createElement("div");
         rowContainer.setAttribute("class", "rowContainer");
         canvas.appendChild(rowContainer);
-    
+
         for (let y = 0; y < gridSize; y++) {
             const pixel = document.createElement("div");
             pixel.setAttribute("class", "pixel");
@@ -30,21 +32,22 @@ function createCanvas(gridSize) {
 function colorPixel(event) {
     const target = event.currentTarget;
     let targetOpacity = parseFloat(getComputedStyle(target).opacity);
-    console.log(targetOpacity);
+
     if (targetOpacity < 1) {
         target.style.opacity = targetOpacity + .1;
-        console.log(targetOpacity + .1);
-        console.log("if statement called");
-    } 
+    }
+
+    target.style.backgroundColor = currentColor;
 }
 
+//reset canvas
 function resetCanvas(gridSize) {
     canvas.replaceChildren();
     createCanvas(gridSize);
 }
 
 
-//reset canvas
+//reset canvas button event listener
 const resetBtn = document.querySelector("#reset");
 resetBtn.addEventListener("click", () => {
     let gridSize = parseInt(prompt("How many pixels would you like in the canvas? Please enter a number from 1-100."));
@@ -55,3 +58,22 @@ resetBtn.addEventListener("click", () => {
         return
     }
 })
+
+//change color
+function changeColor(newColor) {
+    currentColor = newColor.target.id;
+    console.log('event listener called new color:')
+    console.log(newColor.target.id);
+}
+
+// Create changeColor buttons and add event listeners
+const colorContainer = document.querySelector("#colorContainer");
+for (color of colorArray) {
+    const colorButton = document.createElement("div");
+    colorButton.setAttribute("class", "color");
+    colorButton.setAttribute("id", color);
+    colorContainer.appendChild(colorButton);
+    colorButton.style.backgroundColor = color;
+
+    colorButton.addEventListener("click", changeColor);
+}
